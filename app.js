@@ -3,12 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
 const kambingRouter = require('./routes/kambingRouter');
+const userRouter = require('./routes/userRouter');
 
 const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
 app.use('/api', kambingRouter);
+app.use('/api/users', userRouter);
 
 sequelize.sync()
     .then(() => {
